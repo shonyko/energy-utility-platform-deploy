@@ -24,4 +24,4 @@ services:
         image: frontend
         build: ./energy-utility-platform-frontend
         ports:
-            - "8081:80"
+            - "4200:80"

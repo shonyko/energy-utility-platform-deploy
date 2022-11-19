@@ -10,12 +10,6 @@ services:
             - POSTGRES_USER=postgres
             - POSTGRES_PASSWORD=root
 
-    rabbitmq:
-        image: rabbitmq:3-management-alpine
-        ports:
-            - "15672:15672" # manager
-            - "5672:5672"   # mq
-
     backend:
         image: backend
         build: ./energy-utility-platform-backend
@@ -23,10 +17,8 @@ services:
             - "8080:8080"
         environment:
             - DB_URL=db
-            - RABBITMQ_HOST=rabbitmq
         links:
             - db
-            - rabbitmq
 
     frontend:
         image: frontend

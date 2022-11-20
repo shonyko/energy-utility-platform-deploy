@@ -1,5 +1,3 @@
-version: "1.0"
-
 services:
     db:
         image: containerregistryalexandrukovacs30244.azurecr.io/db:latest

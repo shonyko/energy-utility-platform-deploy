@@ -2,7 +2,7 @@ version: "1.0"
 
 services:
     db:
-        image: postgres
+        image: containerregistryalexandrukovacs30244.azurecr.io/db:latest
         ports:
             - "5432:5432"
         environment:
@@ -11,8 +11,7 @@ services:
             - POSTGRES_PASSWORD=root
 
     backend:
-        image: backend
-        build: ./energy-utility-platform-backend
+        image: containerregistryalexandrukovacs30244.azurecr.io/alexandrukovacs30244backend:latest
         ports:
             - "8080:8080"
         environment:
@@ -21,7 +20,6 @@ services:
             - db
 
     frontend:
-        image: frontend
-        build: ./energy-utility-platform-frontend
+        image: containerregistryalexandrukovacs30244.azurecr.io/alexandrukovacs30244frontend:latest
         ports:
             - "4200:80"

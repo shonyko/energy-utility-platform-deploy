@@ -26,11 +26,11 @@ services:
             - "4200:80"
     
     proxy:
-    image: containerregistryalexandrukovacs30244.azurecr.io/grpc-proxy:latest
-    ports:
-      - '9901:9901'
-      - '9091:9091'
-    volumes:
-      - ./envoy.yml:/etc/envoy/envoy.yaml
-    extra_hosts:
-      - host.docker.internal:host-gateway
+        image: containerregistryalexandrukovacs30244.azurecr.io/grpc-proxy:latest
+        ports:
+        - '9901:9901'
+        - '9091:9091'
+        volumes:
+        - ./envoy.yml:/etc/envoy/envoy.yaml
+        extra_hosts:
+        - host.docker.internal:host-gateway

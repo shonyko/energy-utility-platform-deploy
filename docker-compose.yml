@@ -12,8 +12,9 @@ services:
 
     backend:
         image: containerregistryalexandrukovacs30244.azurecr.io/alexandrukovacs30244backend:latest
+        # image: backend
         ports:
-            - "8080:8080"
+            # - "8081:8080"
             - '9090:9090'
         environment:
             - DB_URL=db
@@ -22,15 +23,29 @@ services:
 
     frontend:
         image: containerregistryalexandrukovacs30244.azurecr.io/alexandrukovacs30244frontend:latest
-        ports:
-            - "4200:80"
+        # image: frontend
+        # ports:
+        #     - "4200:80"
+        volumes:
+            - ./frontend.conf:/etc/nginx/nginx.conf
     
-    proxy:
+    grpc-proxy:
         image: containerregistryalexandrukovacs30244.azurecr.io/grpc-proxy:latest
         ports:
-        - '9901:9901'
-        - '9091:9091'
+            - '9901:9901'
+            - '9091:9091'
         # volumes:
-        # - ./envoy.yml:/etc/envoy/envoy.yaml
+        #   - ./envoy.yml:/etc/envoy/envoy.yaml
         extra_hosts:
-        - host.docker.internal:host-gateway
+            - host.docker.internal:host-gateway
+
+    reverse:
+        image: containerregistryalexandrukovacs30244.azurecr.io/proxy
+        ports:
+            - 81:80
+            - 443:443
+        volumes:
+            - ./proxy.conf:/etc/nginx/nginx.conf
+        links:
+            - frontend
+            - backend

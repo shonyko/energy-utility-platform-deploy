@@ -26,8 +26,8 @@ services:
         # image: frontend
         # ports:
         #     - "4200:80"
-        volumes:
-            - ./frontend.conf:/etc/nginx/nginx.conf
+        # volumes:
+        #     - ./frontend.conf:/etc/nginx/nginx.conf
     
     grpc-proxy:
         image: containerregistryalexandrukovacs30244.azurecr.io/grpc-proxy:latest
